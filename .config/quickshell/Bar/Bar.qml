@@ -115,6 +115,10 @@ Scope {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
+                        VpnStatus {
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                         Wifi {
                             anchors.verticalCenter: parent.verticalCenter
                         }
