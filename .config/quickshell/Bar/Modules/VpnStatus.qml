@@ -8,9 +8,8 @@ import qs.Components
 
 Item {
     id: root
-    width: vpnActive ? 50 * Theme.scale(Screen) : 0
-    height: vpnActive ? 22 * Theme.scale(Screen) : 0
-    visible: vpnActive
+    width: 22
+    height: 22
 
     property bool vpnActive: false
     property string vpnType: ""
@@ -105,24 +104,17 @@ Item {
         }
     }
 
-    // VPN indicator - box with "VPN" text
-    Rectangle {
-        id: vpnBox
-        anchors.centerIn: parent
-        width: 42 * Theme.scale(Screen)
-        height: 20 * Theme.scale(Screen)
-        radius: 4
-        color: "transparent"
-        border.color: vpnMouseArea.containsMouse ? Theme.accentPrimary : Theme.textPrimary
-        border.width: 1.5
+    // VPN indicator icon
+    Item {
+        id: vpnIcon
+        width: 22; height: 22
 
         Text {
             id: vpnText
             anchors.centerIn: parent
-            text: "VPN"
-            font.family: "monospace"
-            font.pixelSize: 11 * Theme.scale(Screen)
-            font.bold: true
+            text: vpnActive ? "vpn_key" : "vpn_key_off"
+            font.family: vpnMouseArea.containsMouse ? "Material Symbols Rounded" : "Material Symbols Outlined"
+            font.pixelSize: 16 * Theme.scale(Screen)
             color: vpnMouseArea.containsMouse ? Theme.accentPrimary : Theme.textPrimary
         }
 
@@ -139,17 +131,19 @@ Item {
     StyledTooltip {
         id: vpnTooltip
         text: {
-            if (activeInterfaces.length === 0) {
-                return "VPN Active";
+            if (!vpnActive) {
+                return "VPN Inactive";
             } else if (activeInterfaces.length === 1) {
                 return vpnType + " Active: " + activeInterfaces[0];
-            } else {
+            } else if (activeInterfaces.length > 1) {
                 return vpnType + " Active: " + activeInterfaces.join(", ");
+            } else {
+                return "VPN Active";
             }
         }
         positionAbove: false
         tooltipVisible: false
-        targetItem: vpnBox
+        targetItem: vpnIcon
         delay: 200
     }
 }

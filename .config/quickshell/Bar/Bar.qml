@@ -115,15 +115,15 @@ Scope {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
+                        VpnStatus {
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                         Wifi {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
                         Bluetooth {
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-
-                        VpnStatus {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
