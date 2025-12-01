@@ -123,6 +123,10 @@ Scope {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
+                        VpnStatus {
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                         Battery {
                             id: widgetsBattery
 
