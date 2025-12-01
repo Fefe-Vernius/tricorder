@@ -75,7 +75,7 @@ layer-rule {
 //startup
 //---------------------------------------
 spawn-at-startup "/usr/bin/mate-polkit"
-spawn-at-startup "pikabar"
+spawn-at-startup "quickshell"
 spawn-at-startup "systemctl" "--user" "enable" "--now" "hypridle"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "syncthing" "serve" "--no-browser"
@@ -192,7 +192,7 @@ window-rule {
     match app-id=r#"^$"# title=r#"^$"#
     open-floating true
     open-focused false
-    default-floating-position x=10 y=10 relative-to="top-left"
+    default-floating-position x=50 y=110 relative-to="top-left"
 }
 // Picture-in-Picture
 window-rule {
@@ -218,6 +218,29 @@ window-rule {
     match app-id="com.github.hluk.copyq"
     open-floating true
     default-floating-position x=10 y=10 relative-to="bottom-right"
+    default-column-width { fixed 480; }
+    default-window-height { fixed 480; }
+}
+//---------------------------------------
+
+//doublecmd copy, move window
+//---------------------------------------
+window-rule {
+    match app-id="Double Commander" title=r#"Copy"#
+    match app-id="Double Commander" title=r#"Move"#
+    open-floating true
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    default-column-width { fixed 480; }
+    default-window-height { fixed 480; }
+}
+//---------------------------------------
+
+//blueman-manager
+//---------------------------------------
+window-rule {
+    match app-id="blueman-manager" title="Bluetooth Devices"
+    open-floating true
+    default-floating-position x=0 y=0 relative-to="top-right"
     default-column-width { fixed 480; }
     default-window-height { fixed 480; }
 }
