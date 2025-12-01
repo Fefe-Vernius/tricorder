@@ -123,14 +123,8 @@ Scope {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
-                        // Bluetooth {
-                        //     anchors.verticalCenter: parent.verticalCenter
-                        // }
-
-                        BluemanTrayItem {
+                        Bluetooth {
                             anchors.verticalCenter: parent.verticalCenter
-                            bar: panel
-                            trayMenu: externalTrayMenu
                         }
 
                         Battery {

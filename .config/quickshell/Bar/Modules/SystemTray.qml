@@ -18,26 +18,13 @@ Row {
     property bool containsMouse: false
     property var systemTray: SystemTray
 
-    // Function to check if a tray item should be hidden (e.g., Blueman)
-    function shouldHideItem(item) {
-        if (!item) return true;
-
-        // Hide Blueman items (they're displayed separately)
-        if ((item.id && item.id.toLowerCase().includes("blueman")) ||
-            (item.name && item.name.toLowerCase().includes("blueman"))) {
-            return true;
-        }
-
-        return false;
-    }
-
     Repeater {
         model: systemTray.items
         delegate: Item {
             width: 24 * Theme.scale(Screen)
             height: 24 * Theme.scale(Screen)
 
-            visible: modelData && !shouldHideItem(modelData)
+            visible: modelData
             property bool isHovered: trayMouseArea.containsMouse
 
             // No animations - static display
