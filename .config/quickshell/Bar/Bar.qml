@@ -118,15 +118,10 @@ Scope {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
-                        VpnStatus {
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
+                        Volume {
+                            id: widgetsVolume
 
-                        Wifi {
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-
-                        Bluetooth {
+                            shell: rootScope.shell
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
@@ -137,10 +132,15 @@ Scope {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
-                        Volume {
-                            id: widgetsVolume
+                        Bluetooth {
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
 
-                            shell: rootScope.shell
+                        VpnStatus {
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        Wifi {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
