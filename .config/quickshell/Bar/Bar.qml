@@ -130,12 +130,6 @@ Scope {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
-                        Battery {
-                            id: widgetsBattery
-
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-
                         Brightness {
                             id: widgetsBrightness
 
@@ -147,6 +141,12 @@ Scope {
                             id: widgetsVolume
 
                             shell: rootScope.shell
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        Battery {
+                            id: widgetsBattery
+
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
