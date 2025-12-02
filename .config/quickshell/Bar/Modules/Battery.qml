@@ -70,10 +70,12 @@ Item {
         id: batteryIcon
         text: batteryWidget.batteryIcon()
         font.family: "Material Symbols Rounded"
-        font.pixelSize: 20 * Theme.scale(Quickshell.screens[0])
-        color: charging ? Theme.accentPrimary : Theme.textPrimary
+        font.pixelSize: 16 * Theme.scale(Quickshell.screens[0])
+        // color: charging ? Theme.accentPrimary : Theme.textPrimary
+        color: mouseAreaBattery.containsMouse ? Theme.accentPrimary : Theme.textPrimary
 
         MouseArea {
+            id: mouseAreaBattery
             anchors.fill: parent
             hoverEnabled: true
             onEntered: {
@@ -95,7 +97,7 @@ Item {
             }
 
             // Add percentage as first line
-            lines.push(Math.round(batteryWidget.percent) + "%");
+            lines.push("Charge: " + Math.round(batteryWidget.percent) + "%");
 
             if (batteryWidget.battery.timeToEmpty > 0) {
                 lines.push("Time left: " + Time.formatVagueHumanReadableTime(batteryWidget.battery.timeToEmpty));
@@ -128,6 +130,6 @@ Item {
         }
         tooltipVisible: false
         targetItem: batteryIcon
-        delay: 1500
+        delay: 200
     }
 }
