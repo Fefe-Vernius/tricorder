@@ -60,10 +60,12 @@ Scope {
                         anchors.verticalCenter: barBackground.verticalCenter
                         anchors.left: barBackground.left
                         anchors.leftMargin: 18 * Theme.scale(panel.screen)
-                        spacing: 12 * Theme.scale(panel.screen)
+                        // spacing: 12 * Theme.scale(panel.screen)
+                        spacing: 10 * Theme.scale(panel.screen)
 
                         SystemInfo {
                             anchors.verticalCenter: parent.verticalCenter
+			    spacing: 7
                         }
 
                         Media {
@@ -95,7 +97,8 @@ Scope {
                         anchors.verticalCenter: barBackground.verticalCenter
                         anchors.right: barBackground.right
                         anchors.rightMargin: 18 * Theme.scale(panel.screen)
-                        spacing: 12 * Theme.scale(panel.screen)
+                        // spacing: 12 * Theme.scale(panel.screen)
+                        spacing: 7 * Theme.scale(panel.screen)
 
                         SystemTray {
                             id: systemTrayModule
