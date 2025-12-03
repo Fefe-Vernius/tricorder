@@ -68,6 +68,10 @@ Scope {
 			    spacing: 7
                         }
 
+                        AudioMenu {
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                         Media {
                             anchors.verticalCenter: parent.verticalCenter
                         }
