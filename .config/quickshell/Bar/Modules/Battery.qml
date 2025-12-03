@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import Quickshell.Services.UPower
+import Quickshell.Io
 import QtQuick.Layouts
 import qs.Components
 import qs.Settings
@@ -19,6 +20,36 @@ Item {
     property real percent: testMode ? testPercent : (isReady ? (battery.percentage * 100) : 0)
     property bool charging: testMode ? testCharging : (isReady ? battery.state === UPowerDeviceState.Charging : false)
     property bool show: isReady && percent > 0
+
+    // Notification tracking
+    property bool notified20: false
+    property bool notified10: false
+
+    // Monitor battery percentage and send notifications
+    onPercentChanged: {
+        if (!charging && isReady) {
+            // 20% notification
+            if (percent <= 20 && percent > 10 && !notified20) {
+                Process.exec("notify-send", ["-u", "critical", "Low Battery", "Battery level at " + Math.round(percent) + "%"]);
+                notified20 = true;
+            }
+            // 10% notification
+            else if (percent <= 10 && !notified10) {
+                Process.exec("notify-send", ["-u", "critical", "Critical Battery", "Battery level at " + Math.round(percent) + "%"]);
+                notified10 = true;
+            }
+            // Reset flags when charging or battery increases
+            else if (percent > 20) {
+                notified20 = false;
+                notified10 = false;
+            }
+        }
+        // Reset notification flags when charging
+        if (charging) {
+            notified20 = false;
+            notified10 = false;
+        }
+    }
 
     // Choose icon based on charge and charging state
     function batteryIcon() {
@@ -71,8 +102,13 @@ Item {
         text: batteryWidget.batteryIcon()
         font.family: "Material Symbols Rounded"
         font.pixelSize: 16 * Theme.scale(Quickshell.screens[0])
-        // color: charging ? Theme.accentPrimary : Theme.textPrimary
-        color: mouseAreaBattery.containsMouse ? Theme.accentPrimary : Theme.textPrimary
+        color: {
+            if (mouseAreaBattery.containsMouse)
+                return Theme.accentPrimary;
+            if (!charging && percent <= 20)
+                return "#d45151";
+            return Theme.textPrimary;
+        }
 
         MouseArea {
             id: mouseAreaBattery
