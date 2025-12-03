@@ -18,6 +18,10 @@ Item {
     property int pillPaddingHorizontal: 14
     property bool autoHide: false
     property string iconPosition: "right" // "right" or "left"
+    property bool showVolumeFill: false
+    property real volumeFill: 0 // 0-100
+    property color volumeFillColor: Theme.accentPrimary
+    property real minPillWidth: 0 // Minimum pill width to prevent resizing
 
     // Internal state
     property bool showPill: false
@@ -25,7 +29,10 @@ Item {
 
     // Exposed width logic
     readonly property int pillOverlap: iconSize / 2
-    readonly property int maxPillWidth: Math.max(1, textItem.implicitWidth + pillPaddingHorizontal * 2 + pillOverlap)
+    readonly property int maxPillWidth: Math.max(
+        minPillWidth > 0 ? minPillWidth : 1,
+        textItem.implicitWidth + pillPaddingHorizontal * 2 + pillOverlap
+    )
 
     signal shown
     signal hidden
@@ -45,6 +52,30 @@ Item {
         topRightRadius: iconPosition === "left" ? pillHeight / 2 : 0
         bottomRightRadius: iconPosition === "left" ? pillHeight / 2 : 0
         anchors.verticalCenter: parent.verticalCenter
+        clip: true
+
+        Rectangle {
+            id: volumeFillRect
+            visible: showVolumeFill && showPill
+            height: parent.height
+            width: parent.width * (volumeFill / 100)
+            color: volumeFillColor
+            opacity: 0.3
+            anchors.left: iconPosition === "left" ? parent.right : undefined
+            anchors.right: iconPosition === "right" ? parent.left : undefined
+            x: iconPosition === "left" ? parent.width - width : 0
+            topLeftRadius: iconPosition === "left" ? 0 : pillHeight / 2
+            bottomLeftRadius: iconPosition === "left" ? 0 : pillHeight / 2
+            topRightRadius: iconPosition === "left" ? pillHeight / 2 : 0
+            bottomRightRadius: iconPosition === "left" ? pillHeight / 2 : 0
+
+            Behavior on width {
+                NumberAnimation {
+                    duration: 100
+                    easing.type: Easing.OutCubic
+                }
+            }
+        }
 
         Text {
             id: textItem
