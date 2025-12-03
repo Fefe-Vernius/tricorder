@@ -17,6 +17,7 @@ Item {
     property int iconSize: 22 * Theme.scale(Screen)
     property int pillPaddingHorizontal: 14
     property bool autoHide: false
+    property string iconPosition: "right" // "right" or "left"
 
     // Internal state
     property bool showPill: false
@@ -36,11 +37,13 @@ Item {
         id: pill
         width: showPill ? maxPillWidth : 1
         height: pillHeight
-        x: (iconCircle.x + iconCircle.width / 2) - width
+        x: iconPosition === "left" ? (iconCircle.x + iconCircle.width / 2) : (iconCircle.x + iconCircle.width / 2) - width
         opacity: showPill ? 1 : 0
         color: pillColor
-        topLeftRadius: pillHeight / 2
-        bottomLeftRadius: pillHeight / 2
+        topLeftRadius: iconPosition === "left" ? 0 : pillHeight / 2
+        bottomLeftRadius: iconPosition === "left" ? 0 : pillHeight / 2
+        topRightRadius: iconPosition === "left" ? pillHeight / 2 : 0
+        bottomRightRadius: iconPosition === "left" ? pillHeight / 2 : 0
         anchors.verticalCenter: parent.verticalCenter
 
         Text {
@@ -77,7 +80,8 @@ Item {
         radius: width / 2
         color: showPill ? iconCircleColor : "transparent"
         anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
+        anchors.left: iconPosition === "left" ? parent.left : undefined
+        anchors.right: iconPosition === "right" ? parent.right : undefined
 
         Behavior on color {
             ColorAnimation {

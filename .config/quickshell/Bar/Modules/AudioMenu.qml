@@ -75,6 +75,7 @@ Item {
                 collapsedIconColor: Theme.textPrimary
                 autoHide: false
                 showPill: true  // Always show the pill
+                iconPosition: "left"
 
                 StyledTooltip {
                     text: "Output Device: " + speakerName
@@ -118,6 +119,7 @@ Item {
                 collapsedIconColor: Theme.textPrimary
                 autoHide: false
                 showPill: true  // Always show the pill
+                iconPosition: "left"
 
                 StyledTooltip {
                     text: "Input Device: " + microphoneName
@@ -148,6 +150,7 @@ Item {
     // Audio Device Selector popup
     AudioDeviceSelector {
         id: audioDeviceSelector
+        menuPosition: "left"
         onPanelClosed: audioDeviceSelector.dismiss()
     }
 }

@@ -10,6 +10,7 @@ PanelWithOverlay {
 
     property int tabIndex: 0
     property Item anchorItem: null
+    property string menuPosition: "right" // "left" or "right"
 
     signal panelClosed()
 
@@ -77,9 +78,11 @@ PanelWithOverlay {
         width: 340
         height: 340
         anchors.top: parent.top
-        anchors.right: parent.right
+        anchors.left: menuPosition === "left" ? parent.left : undefined
+        anchors.right: menuPosition === "right" ? parent.right : undefined
         anchors.topMargin: 4
-        anchors.rightMargin: 4
+        anchors.leftMargin: menuPosition === "left" ? 4 : 0
+        anchors.rightMargin: menuPosition === "right" ? 4 : 0
 
         // Prevent closing when clicking in the panel bg
         MouseArea {
