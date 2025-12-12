@@ -18,6 +18,14 @@ input {
     focus-follows-mouse max-scroll-amount="0%"
 }
 
+output "HDMI-A-1" {
+    mode "1920x1200@120"
+    scale 1
+    transform "normal"
+    variable-refresh-rate on-demand=false
+    position x=0 y=0
+}
+
 //output "DP-3" {
 //    mode "3840x2160@240"
 //    scale 2
@@ -185,18 +193,11 @@ window-rule {
 }
 //---------------------------------------
 
-//vivaldi
+//firefox
 //---------------------------------------
-//Notification window
-window-rule {
-    match app-id=r#"^$"# title=r#"^$"#
-    open-floating true
-    open-focused false
-    default-floating-position x=50 y=110 relative-to="top-left"
-}
 // Picture-in-Picture
 window-rule {
-    match title=r#"^Picture in picture$"# app-id=r#"^$"#
+    match title=r#"^Picture-in-Picture$"# app-id="firefox"
     open-floating true
     default-floating-position x=20 y=20 relative-to="top-right"
     default-column-width { fixed 360; }
@@ -274,7 +275,8 @@ binds {
     //---------------------------------------
     Mod+Space { spawn "wofi" "--show" "drun" "--allow-images" "--insensitive"; }
     Mod+Return { spawn "kitty"; }
-    Mod+B { spawn "flatpak" "run" "com.vivaldi.Vivaldi"; }
+    Mod+B { spawn "firefox"; }
+    Mod+Shift+B { spawn "/home/fefe/.config/scripts/summon/beeper_summon.sh"; }
     Ctrl+Alt+K { spawn "/home/fefe/.config/scripts/summon/keepassxc_summon.sh"; }
     Ctrl+Alt+V { spawn "copyq" "show"; }
     Mod+E { spawn "doublecmd"; }

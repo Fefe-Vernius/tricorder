@@ -66,7 +66,8 @@ Singleton {
             property string textDisabled: "#6B718A"
             
             // Accent Colors
-            property string accentPrimary: "#A8AEFF"
+            //property string accentPrimary: "#A8AEFF"
+            property string accentPrimary: "#306230"
             property string accentSecondary: "#9EA0FF"
             property string accentTertiary: "#8EABFF"
             
