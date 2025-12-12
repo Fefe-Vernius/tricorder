@@ -63,10 +63,10 @@ Scope {
                         // spacing: 12 * Theme.scale(panel.screen)
                         spacing: 10 * Theme.scale(panel.screen)
 
-                        SystemInfo {
-                            anchors.verticalCenter: parent.verticalCenter
-			    spacing: 7
-                        }
+                        //SystemInfo {
+                        //    anchors.verticalCenter: parent.verticalCenter
+			//    spacing: 7 
+                        //}
 
                         AudioMenu {
                             anchors.verticalCenter: parent.verticalCenter
@@ -102,7 +102,13 @@ Scope {
                         anchors.right: barBackground.right
                         anchors.rightMargin: 18 * Theme.scale(panel.screen)
                         // spacing: 12 * Theme.scale(panel.screen)
-                        spacing: 7 * Theme.scale(panel.screen)
+                        spacing: 2 * Theme.scale(panel.screen)
+
+                        SystemInfo {
+                            anchors.verticalCenter: parent.verticalCenter
+                            //anchors.left: barBackground.left --not sure how to do the anchoring
+			    spacing: 2 
+                        }
 
                         SystemTray {
                             id: systemTrayModule
@@ -111,6 +117,7 @@ Scope {
                             anchors.verticalCenter: parent.verticalCenter
                             bar: panel
                             trayMenu: externalTrayMenu
+			    spacing: 2 * Theme.scale(panel.screen) 
                         }
 
                         CustomTrayMenu {
